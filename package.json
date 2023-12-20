@@ -1,5 +1,5 @@
 {
-  "name": "rn-bottom-sheet",
+  "name": "qh-rn-bottom-sheet",
   "version": "1.0.0",
   "description": "Bottom Sheet component for React Native Apps",
   "main": "dist/index.js",

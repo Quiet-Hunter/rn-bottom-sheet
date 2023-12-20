@@ -18,13 +18,13 @@ A customizable and easy-to-use bottom sheet component for React Native apps.
 ## Installation
 
 ```bash
-npm install rn-bottom-sheet
+npm install qh-rn-bottom-sheet
 ```
 
 or
 
 ```bash
-yarn add rn-bottom-sheet
+yarn add qh-rn-bottom-sheet
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Import the `BottomSheet` component in your React Native app and use it as shown 
 ```jsx
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import BottomSheet from 'rn-bottom-sheet';
+import BottomSheet from 'qh-rn-bottom-sheet';
 
 const YourComponent = () => {
   const [bs, setBs] = useState(false);
