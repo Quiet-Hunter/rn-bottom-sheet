@@ -1,6 +1,6 @@
 {
   "name": "qh-rn-bottom-sheet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bottom Sheet component for React Native Apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
