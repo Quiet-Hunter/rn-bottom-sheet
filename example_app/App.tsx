@@ -10,7 +10,7 @@ function App(): React.JSX.Element {
     <View style={styles.main}>
       <Button title="Open" onPress={() => setBottomSheet(true)} />
       {bottomSheet ? (
-        <BottomSheet close={() => setBottomSheet(false)}>
+        <BottomSheet close={() => setBottomSheet(false)} title="Upload Image">
           <View style={styles.list}>
             <View style={styles.listItem}>
               <Image source={photoIcon} style={styles.icon} />

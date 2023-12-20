@@ -22,40 +22,45 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BottomSheet = void 0;
 var react_1 = __importStar(require("react"));
+var prop_types_1 = __importDefault(require("prop-types"));
 var react_native_1 = require("react-native");
+var styles_1 = __importDefault(require("./styles"));
 var closeIcon = require("./img/close.png");
 var INITIAL_Y = 400;
 var DRAG_THRESHOLD = 100;
 var ANIM_DURATION = 200;
 var BottomSheet = function (_a) {
-    var close = _a.close, children = _a.children, _b = _a.title, title = _b === void 0 ? "" : _b;
-    var slideAnim = (0, react_1.useRef)(new react_native_1.Animated.ValueXY({ x: 0, y: INITIAL_Y })).current;
+    var close = _a.close, children = _a.children, title = _a.title, hideCloseIcon = _a.hideCloseIcon, dragIconStyle = _a.dragIconStyle, draggableAreaStyle = _a.draggableAreaStyle, headerStyle = _a.headerStyle, titleContainerStyle = _a.titleContainerStyle, titleStyle = _a.titleStyle, _b = _a.initialY, initialY = _b === void 0 ? INITIAL_Y : _b, _c = _a.dragThreshold, dragThreshold = _c === void 0 ? DRAG_THRESHOLD : _c, _d = _a.animDuration, animDuration = _d === void 0 ? ANIM_DURATION : _d;
+    var slideAnim = (0, react_1.useRef)(new react_native_1.Animated.ValueXY({ x: 0, y: initialY })).current;
     (0, react_1.useEffect)(function () {
         react_native_1.Animated.timing(slideAnim, {
             toValue: { x: 0, y: 0 },
-            duration: ANIM_DURATION,
+            duration: animDuration,
             useNativeDriver: true,
         }).start();
-    }, [slideAnim]);
-    var handleClose = function () {
+    }, [animDuration, slideAnim]);
+    var handleClose = (0, react_1.useCallback)(function () {
         react_native_1.Animated.timing(slideAnim, {
-            toValue: { x: 0, y: INITIAL_Y },
-            duration: ANIM_DURATION,
+            toValue: { x: 0, y: initialY },
+            duration: animDuration,
             useNativeDriver: true,
         }).start(function () { return close(); });
-    };
+    }, [animDuration, close, initialY, slideAnim]);
     var panResponder = (0, react_1.useRef)(react_native_1.PanResponder.create({
         onStartShouldSetPanResponder: function () { return true; },
         onPanResponderMove: function (event, gestureState) {
             if (gestureState.dy > -50) {
-                slideAnim.setValue({ x: 0, y: Math.min(gestureState.dy, INITIAL_Y) });
+                slideAnim.setValue({ x: 0, y: Math.min(gestureState.dy, initialY) });
             }
         },
         onPanResponderRelease: function (event, gestureState) {
-            if (gestureState.dy > DRAG_THRESHOLD) {
+            if (gestureState.dy > dragThreshold) {
                 handleClose();
             }
             else {
@@ -67,76 +72,54 @@ var BottomSheet = function (_a) {
         },
     })).current;
     return (<react_native_1.Animated.View style={[
-            styles.bottomSheet,
+            styles_1.default.bottomSheet,
             { transform: slideAnim.getTranslateTransform() },
         ]}>
-      <react_native_1.View {...panResponder.panHandlers} style={styles.draggableArea}>
-        <react_native_1.View style={styles.dragPointer}/>
+      <react_native_1.View {...panResponder.panHandlers} style={react_native_1.StyleSheet.flatten([styles_1.default.draggableArea, draggableAreaStyle])}>
+        <react_native_1.View style={react_native_1.StyleSheet.flatten([styles_1.default.dragPointer, dragIconStyle])}/>
       </react_native_1.View>
-      <react_native_1.View style={styles.bottomSheetHeader}>
-        <react_native_1.View style={styles.bottomSheetTitleContainer}>
-          <react_native_1.Text style={styles.bottomSheetTitle}>{title}</react_native_1.Text>
+      <react_native_1.View style={react_native_1.StyleSheet.flatten([styles_1.default.bottomSheetHeader, headerStyle])}>
+        <react_native_1.View style={react_native_1.StyleSheet.flatten([
+            styles_1.default.bottomSheetTitleContainer,
+            titleContainerStyle,
+        ])}>
+          <react_native_1.Text style={react_native_1.StyleSheet.flatten([styles_1.default.bottomSheetTitle, titleStyle])}>
+            {title}
+          </react_native_1.Text>
         </react_native_1.View>
-        <react_native_1.TouchableOpacity onPress={handleClose}>
-          <react_native_1.Image source={closeIcon} style={styles.closeIcon}/>
-        </react_native_1.TouchableOpacity>
+        {!hideCloseIcon && (<react_native_1.TouchableOpacity onPress={handleClose}>
+            <react_native_1.Image source={closeIcon} style={styles_1.default.closeIcon}/>
+          </react_native_1.TouchableOpacity>)}
       </react_native_1.View>
       <react_native_1.View>{children}</react_native_1.View>
     </react_native_1.Animated.View>);
 };
 exports.BottomSheet = BottomSheet;
+exports.BottomSheet.propTypes = {
+    close: prop_types_1.default.func.isRequired,
+    children: prop_types_1.default.node,
+    title: prop_types_1.default.string,
+    hideCloseIcon: prop_types_1.default.bool,
+    dragIconStyle: prop_types_1.default.object,
+    draggableAreaStyle: prop_types_1.default.object,
+    headerStyle: prop_types_1.default.object,
+    titleContainerStyle: prop_types_1.default.object,
+    titleStyle: prop_types_1.default.object,
+    initialY: prop_types_1.default.number,
+    dragThreshold: prop_types_1.default.number,
+    animDuration: prop_types_1.default.number,
+};
+exports.BottomSheet.defaultProps = {
+    children: null,
+    title: "",
+    hideCloseIcon: false,
+    dragIconStyle: {},
+    draggableAreaStyle: {},
+    headerStyle: {},
+    titleContainerStyle: {},
+    titleStyle: {},
+    initialY: INITIAL_Y,
+    dragThreshold: DRAG_THRESHOLD,
+    animDuration: ANIM_DURATION,
+};
 exports.default = exports.BottomSheet;
-var styles = react_native_1.StyleSheet.create({
-    bottomSheet: {
-        position: "absolute",
-        backgroundColor: "#fff",
-        borderTopEndRadius: 32,
-        borderTopStartRadius: 32,
-        padding: 20,
-        paddingTop: 0,
-        paddingBottom: 170,
-        bottom: -150,
-        width: "100%",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: -1,
-            height: -3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 6,
-        zIndex: 2,
-    },
-    draggableArea: {
-        width: "100%",
-        height: 32,
-        alignItems: "center",
-        justifyContent: "flex-start",
-    },
-    dragPointer: {
-        width: 40,
-        height: 4,
-        marginTop: 4,
-        borderRadius: 10,
-        backgroundColor: "#000",
-    },
-    bottomSheetHeader: {
-        display: "flex",
-        flexDirection: "row",
-    },
-    bottomSheetTitle: {
-        fontSize: 20,
-        fontWeight: "700",
-        color: "#000",
-        paddingLeft: 24,
-    },
-    bottomSheetTitleContainer: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        alignContent: "center",
-        justifyContent: "center",
-    },
-    closeIcon: { width: 24, height: 24 },
-});
