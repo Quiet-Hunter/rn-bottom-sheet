@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
-import BottomSheet from './src/BottomSheet';
-const photoIcon = require('./src/photo.png');
-const galleryIcon = require('./src/gallery.png');
+import {Button, StyleSheet, Text, View} from 'react-native';
+import BottomSheet from 'qh-rn-bottom-sheet';
 
 function App(): React.JSX.Element {
   const [bottomSheet, setBottomSheet] = useState(false);
@@ -10,15 +8,13 @@ function App(): React.JSX.Element {
     <View style={styles.main}>
       <Button title="Open" onPress={() => setBottomSheet(true)} />
       {bottomSheet ? (
-        <BottomSheet close={() => setBottomSheet(false)} title="Upload Image">
+        <BottomSheet close={() => setBottomSheet(false)} title="Options">
           <View style={styles.list}>
             <View style={styles.listItem}>
-              <Image source={photoIcon} style={styles.icon} />
-              <Text style={styles.listItemText}>Take a picture</Text>
+              <Text style={styles.listItemText}>Option 1</Text>
             </View>
             <View style={styles.listItem}>
-              <Image source={galleryIcon} style={styles.icon} />
-              <Text style={styles.listItemText}>Choose from a gallery</Text>
+              <Text style={styles.listItemText}>Option 2</Text>
             </View>
           </View>
         </BottomSheet>
