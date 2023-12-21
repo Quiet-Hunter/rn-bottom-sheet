@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import PropTypes from "prop-types";
 import {
   Text,
   TouchableOpacity,
@@ -10,13 +9,10 @@ import {
   PanResponder,
 } from "react-native";
 import styles from "./styles";
-import BottomSheetProps from "./types";
+import BottomSheetProps, { propsTypes, defaultProps } from "./types";
+import { ANIM_DURATION, DRAG_THRESHOLD, INITIAL_Y } from "./constants";
 
 const closeIcon = require("./img/close.png");
-
-const INITIAL_Y = 400;
-const DRAG_THRESHOLD = 100;
-const ANIM_DURATION = 200;
 
 export const BottomSheet = ({
   close,
@@ -108,33 +104,8 @@ export const BottomSheet = ({
   );
 };
 
-BottomSheet.propTypes = {
-  close: PropTypes.func.isRequired,
-  children: PropTypes.node,
-  title: PropTypes.string,
-  hideCloseIcon: PropTypes.bool,
-  dragIconStyle: PropTypes.object,
-  draggableAreaStyle: PropTypes.object,
-  headerStyle: PropTypes.object,
-  titleContainerStyle: PropTypes.object,
-  titleStyle: PropTypes.object,
-  initialY: PropTypes.number,
-  dragThreshold: PropTypes.number,
-  animDuration: PropTypes.number,
-};
+BottomSheet.propTypes = propsTypes;
 
-BottomSheet.defaultProps = {
-  children: null,
-  title: "",
-  hideCloseIcon: false,
-  dragIconStyle: {},
-  draggableAreaStyle: {},
-  headerStyle: {},
-  titleContainerStyle: {},
-  titleStyle: {},
-  initialY: INITIAL_Y,
-  dragThreshold: DRAG_THRESHOLD,
-  animDuration: ANIM_DURATION,
-};
+BottomSheet.defaultProps = defaultProps;
 
 export default BottomSheet;

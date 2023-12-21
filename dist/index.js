@@ -28,15 +28,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BottomSheet = void 0;
 var react_1 = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
 var react_native_1 = require("react-native");
 var styles_1 = __importDefault(require("./styles"));
+var types_1 = require("./types");
+var constants_1 = require("./constants");
 var closeIcon = require("./img/close.png");
-var INITIAL_Y = 400;
-var DRAG_THRESHOLD = 100;
-var ANIM_DURATION = 200;
 var BottomSheet = function (_a) {
-    var close = _a.close, children = _a.children, title = _a.title, hideCloseIcon = _a.hideCloseIcon, dragIconStyle = _a.dragIconStyle, draggableAreaStyle = _a.draggableAreaStyle, headerStyle = _a.headerStyle, titleContainerStyle = _a.titleContainerStyle, titleStyle = _a.titleStyle, _b = _a.initialY, initialY = _b === void 0 ? INITIAL_Y : _b, _c = _a.dragThreshold, dragThreshold = _c === void 0 ? DRAG_THRESHOLD : _c, _d = _a.animDuration, animDuration = _d === void 0 ? ANIM_DURATION : _d;
+    var close = _a.close, children = _a.children, title = _a.title, hideCloseIcon = _a.hideCloseIcon, dragIconStyle = _a.dragIconStyle, draggableAreaStyle = _a.draggableAreaStyle, headerStyle = _a.headerStyle, titleContainerStyle = _a.titleContainerStyle, titleStyle = _a.titleStyle, _b = _a.initialY, initialY = _b === void 0 ? constants_1.INITIAL_Y : _b, _c = _a.dragThreshold, dragThreshold = _c === void 0 ? constants_1.DRAG_THRESHOLD : _c, _d = _a.animDuration, animDuration = _d === void 0 ? constants_1.ANIM_DURATION : _d;
     var slideAnim = (0, react_1.useRef)(new react_native_1.Animated.ValueXY({ x: 0, y: initialY })).current;
     (0, react_1.useEffect)(function () {
         react_native_1.Animated.timing(slideAnim, {
@@ -95,31 +93,6 @@ var BottomSheet = function (_a) {
     </react_native_1.Animated.View>);
 };
 exports.BottomSheet = BottomSheet;
-exports.BottomSheet.propTypes = {
-    close: prop_types_1.default.func.isRequired,
-    children: prop_types_1.default.node,
-    title: prop_types_1.default.string,
-    hideCloseIcon: prop_types_1.default.bool,
-    dragIconStyle: prop_types_1.default.object,
-    draggableAreaStyle: prop_types_1.default.object,
-    headerStyle: prop_types_1.default.object,
-    titleContainerStyle: prop_types_1.default.object,
-    titleStyle: prop_types_1.default.object,
-    initialY: prop_types_1.default.number,
-    dragThreshold: prop_types_1.default.number,
-    animDuration: prop_types_1.default.number,
-};
-exports.BottomSheet.defaultProps = {
-    children: null,
-    title: "",
-    hideCloseIcon: false,
-    dragIconStyle: {},
-    draggableAreaStyle: {},
-    headerStyle: {},
-    titleContainerStyle: {},
-    titleStyle: {},
-    initialY: INITIAL_Y,
-    dragThreshold: DRAG_THRESHOLD,
-    animDuration: ANIM_DURATION,
-};
+exports.BottomSheet.propTypes = types_1.propsTypes;
+exports.BottomSheet.defaultProps = types_1.defaultProps;
 exports.default = exports.BottomSheet;

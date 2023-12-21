@@ -9,7 +9,7 @@
     "url": "https://github.com/Quiet-Hunter/rn-bottom-sheet.git"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && node copy-assets.js"
   },
   "keywords": [
     "react-native",

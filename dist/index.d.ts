@@ -1,21 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 import BottomSheetProps from "./types";
 export declare const BottomSheet: {
     ({ close, children, title, hideCloseIcon, dragIconStyle, draggableAreaStyle, headerStyle, titleContainerStyle, titleStyle, initialY, dragThreshold, animDuration, }: BottomSheetProps): React.JSX.Element;
     propTypes: {
-        close: PropTypes.Validator<(...args: any[]) => any>;
-        children: PropTypes.Requireable<PropTypes.ReactNodeLike>;
-        title: PropTypes.Requireable<string>;
-        hideCloseIcon: PropTypes.Requireable<boolean>;
-        dragIconStyle: PropTypes.Requireable<object>;
-        draggableAreaStyle: PropTypes.Requireable<object>;
-        headerStyle: PropTypes.Requireable<object>;
-        titleContainerStyle: PropTypes.Requireable<object>;
-        titleStyle: PropTypes.Requireable<object>;
-        initialY: PropTypes.Requireable<number>;
-        dragThreshold: PropTypes.Requireable<number>;
-        animDuration: PropTypes.Requireable<number>;
+        close: import("prop-types").Validator<(...args: any[]) => any>;
+        children: import("prop-types").Requireable<import("prop-types").ReactNodeLike>;
+        title: import("prop-types").Requireable<string>;
+        hideCloseIcon: import("prop-types").Requireable<boolean>;
+        dragIconStyle: import("prop-types").Requireable<object>;
+        draggableAreaStyle: import("prop-types").Requireable<object>;
+        headerStyle: import("prop-types").Requireable<object>;
+        titleContainerStyle: import("prop-types").Requireable<object>;
+        titleStyle: import("prop-types").Requireable<object>;
+        initialY: import("prop-types").Requireable<number>;
+        dragThreshold: import("prop-types").Requireable<number>;
+        animDuration: import("prop-types").Requireable<number>;
     };
     defaultProps: {
         children: null;
