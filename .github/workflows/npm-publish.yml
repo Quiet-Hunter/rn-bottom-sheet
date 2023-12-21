@@ -2,13 +2,12 @@ name: Publish to NPM
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -24,7 +23,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Extract version from package.json
+        id: extract_version
+        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+
       - name: Publish to npm
+        if: endsWith(github.ref, steps.extract_version.outputs.VERSION) # Only publish if tag matches version
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

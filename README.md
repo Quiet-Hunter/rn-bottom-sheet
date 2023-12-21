@@ -5,8 +5,11 @@ A customizable and easy-to-use bottom sheet component for React Native apps.
 
 ## Demo
 
-![Bottom Sheet Demo Gif](https://raw.githubusercontent.com/Quiet-Hunter/rn-bottom-sheet/main/example_app/demo.gif)
-![Bottom Sheet Demo Image](https://raw.githubusercontent.com/Quiet-Hunter/rn-bottom-sheet/main/example_app/demo.png)
+![Bottom Sheet Demo Gif](https://raw.githubusercontent.com/Quiet-Hunter/rn-bottom-sheet/main/example_app/images/demo.gif)
+![Bottom Sheet Demo Image](https://raw.githubusercontent.com/Quiet-Hunter/rn-bottom-sheet/main/example_app/images/demo.png)
+
+![Bottom Sheet Demo Gif](https://raw.githubusercontent.com/Quiet-Hunter/rn-bottom-sheet/main/example_app/images/demo_prod.gif)
+![Bottom Sheet Demo Image](https://raw.githubusercontent.com/Quiet-Hunter/rn-bottom-sheet/main/example_app/images/demo_prod.png)
 
 ## Features
 
